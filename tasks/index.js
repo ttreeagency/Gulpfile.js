@@ -13,7 +13,7 @@ let task = {
 };
 
 
-for (let taskName of ['clean', 'css', 'js', 'jsLint', 'scssLint', 'fonts', 'images', 'optimizeImages', 'static', 'svgSprite']) {
+for (let taskName of ['clean', 'css', 'js', 'jsLint', 'scssLint', 'fonts', 'images', 'optimizeImages', 'static', 'svgSprite', 'globalBrotli', 'globalZopfli']) {
 	let func = require('./' + taskName);
 	if (typeof func !== 'function') {
 		func = task.noop;
@@ -72,6 +72,10 @@ gulp.task('optimizeImages').description = 'Optimize images and overrite them in 
 if (config.tasks.svgSprite) {
 	gulp.task('sprite', task.svgSprite);
 	gulp.task('sprite').description = 'Create SVG Sprite';
+}
+if (config.tasks.compress) {
+	gulp.task('compress', bach.parallel(task.globalBrotli, task.globalZopfli));
+	gulp.task('compress').description = 'Compress all CSS/JS with Brotli and Zopfli';
 }
 
 
@@ -132,5 +136,5 @@ gulp.task('default').description = util.colors.inverse(' Generates all ') + ' As
 gulp.task('default').flags = flags;
 
 
-gulp.task('pipeline', gulp.series('build', 'optimizeImages'))
+gulp.task('pipeline', gulp.series('build', 'optimizeImages', 'compress'))
 gulp.task('pipeline').description = 'Build task for pipeline'

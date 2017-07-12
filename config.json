@@ -176,7 +176,8 @@
 
             },
             "extensions": ["svg"]
-        }
+        },
+        "compress": true
     }
 
 }
