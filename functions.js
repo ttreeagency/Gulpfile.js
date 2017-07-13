@@ -154,6 +154,8 @@ function importLibs() {
   globalImport('gulp-size');
   globalImport('gulp-sourcemaps');
   globalImport('gulp-util');
+  globalImport('gulp-brotli');
+  globalImport('gulp-zopfli');
 
   globalImport('handleErrors', './handleErrors');
 }
