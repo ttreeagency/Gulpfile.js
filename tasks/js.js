@@ -69,7 +69,8 @@ function js() {
 			}),
 			allowRealFiles: true,
 			plugins: rollupPlugins,
-			format: rollupConfig.format
+			format: rollupConfig.format,
+			moduleName: rollupConfig.moduleName
 		}))
 		.pipe(config.root.inlineAssets ? gulp.dest(path.join(config.root.base, config.root.inlineAssets)) : util.noop())
 		.pipe(config.banner ? header(config.banner, {

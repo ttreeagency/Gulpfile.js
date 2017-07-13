@@ -17,8 +17,8 @@
     },
 
     "browserSync": {
-        "enable": false,
-        "proxy": "127.0.0.1:8081",
+        "enable": true,
+        "proxy": "https://www.hsso.dev:8180",
         "open": true,
         "xip": false
     },
@@ -118,13 +118,14 @@
         "scssLint": false,
         "jsLint": true,
         "js": {
-            "src": "Components",
+            "src": "Fusion/**",
             "dest": "Scripts",
             "extensions": ["js", "jsx"],
             "rollup": {
                 "enable": true,
                 "comment": "Available formats are amd, cjs, es6, iife or umd",
                 "format": "iife",
+                "moduleName": "f",
                 "buble": true,
                 "plugins": {
                     "nodeResolve": {
