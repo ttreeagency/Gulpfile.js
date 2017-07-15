@@ -5,26 +5,27 @@
         "author": "ttree.ch",
         "homepage": "https://ttree.ch"
     },
-
     "root": {
         "base": "./Packages/",
         "src": "Sites/Hsso.Website/Resources/Private",
         "dest": "Sites/Hsso.Website/Resources/Public",
-        "watch": ["Plugins/**/Private/**", "Sites/**/Private/**"],
-        "dontWatch": ["**/Private/Templates/**"],
+        "watch": [
+            "Plugins/**/Private/**",
+            "Sites/**/Private/**"
+        ],
+        "dontWatch": [
+            "**/Private/Templates/**"
+        ],
         "inlineAssets": false,
         "notifications": false
     },
-
     "browserSync": {
         "enable": false,
         "proxy": "https://localhost:8180",
         "open": true,
         "xip": false
     },
-
     "banner": "/*!\n * <%= info.description %> - powered by <%= info.system %> & <%= info.author %>\n * @build <%= timestamp %>\n * @link <%= info.homepage %>\n */\n",
-
     "chmod": {
         "owner": {
             "read": true,
@@ -42,12 +43,21 @@
             "execute": false
         }
     },
-
     "tasks": {
-        "clean": ["Assets", "Styles", "Scripts", "*.css", "*.js"],
+        "clean": [
+            "Assets",
+            "Styles",
+            "Scripts",
+            "*.css",
+            "*.js"
+        ],
         "css": {
             "src": "Components",
-            "extensions": ["sass", "scss", "css"],
+            "extensions": [
+                "sass",
+                "scss",
+                "css"
+            ],
             "dest": "Styles",
             "sass": {
                 "imagePath": "Assets",
@@ -62,17 +72,26 @@
             "postcss": {
                 "activateRtlCss": false,
                 "assets": {
-                    "loadPaths": ["Assets"],
+                    "loadPaths": [
+                        "Assets"
+                    ],
                     "cachebuster": false
                 },
-                "magicAnimations": {"atRoot": true},
+                "magicAnimations": {
+                    "atRoot": true
+                },
                 "gridKiss": {
                     "fallback": true,
                     "optimize": true
                 },
                 "pseudoelements": {
                     "single": true,
-                    "selectors": ["before","after","first-letter","first-line"]
+                    "selectors": [
+                        "before",
+                        "after",
+                        "first-letter",
+                        "first-line"
+                    ]
                 },
                 "rucksack": {
                     "fallbacks": false
@@ -83,7 +102,12 @@
                 "pxtorem": {
                     "rootValue": 16,
                     "unitPrecision": 5,
-                    "propList": ["font", "font-size", "line-height", "letter-spacing"],
+                    "propList": [
+                        "font",
+                        "font-size",
+                        "line-height",
+                        "letter-spacing"
+                    ],
                     "selectorBlackList": [],
                     "replace": true,
                     "mediaQuery": false,
@@ -120,7 +144,10 @@
         "js": {
             "src": "Fusion/**",
             "dest": "Scripts",
-            "extensions": ["js", "jsx"],
+            "extensions": [
+                "js",
+                "jsx"
+            ],
             "rollup": {
                 "enable": true,
                 "comment": "Available formats are amd, cjs, es6, iife or umd",
@@ -141,11 +168,17 @@
                             "Packages/Plugins"
                         ],
                         "external": [],
-                        "extensions": [".js", ".json", ".jsx"]
+                        "extensions": [
+                            ".js",
+                            ".json",
+                            ".jsx"
+                        ]
                     },
                     "commonjs": {
                         "exclude": "node_modules/process-es6/**",
-                        "include": [ "node_modules/**" ]
+                        "include": [
+                            "node_modules/**"
+                        ]
                     },
                     "amd": false
                 }
@@ -155,30 +188,45 @@
             "src": "Images",
             "dest": "Assets",
             "watchOnlySrc": true,
-            "extensions": ["jpg", "jpeg", "png", "svg", "gif", "ico"]
+            "extensions": [
+                "jpg",
+                "jpeg",
+                "png",
+                "svg",
+                "gif",
+                "ico"
+            ]
         },
         "fonts": {
             "src": "Fonts",
             "dest": "Assets",
             "watchOnlySrc": true,
-            "extensions": ["woff2", "woff", "eot", "ttf", "svg"]
+            "extensions": [
+                "woff2",
+                "woff",
+                "eot",
+                "ttf",
+                "svg"
+            ]
         },
         "static": {
             "src": "Static",
             "dest": "Assets",
             "watchOnlySrc": true,
-            "extensions": ["*"]
+            "extensions": [
+                "*"
+            ]
         },
         "svgSprite": {
             "src": "Sprite",
             "dest": "Assets",
             "watchOnlySrc": true,
             "svgo": {
-
             },
-            "extensions": ["svg"]
+            "extensions": [
+                "svg"
+            ]
         },
-        "compress": true
+        "compress": false
     }
-
 }
