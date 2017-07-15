@@ -34,6 +34,7 @@ let postScss = [
 	require('postcss-selector-matches'),
 	require('postcss-selector-not'),
 	require('postcss-pseudoelements')(pc.pseudoelements),
+	require('postcss-font-awesome'),
 	require('postcss-custom-media'),
 	require('postcss-media-minmax'),
 	require('postcss-quantity-queries'),
