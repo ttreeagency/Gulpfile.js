@@ -17,8 +17,8 @@
     },
 
     "browserSync": {
-        "enable": true,
-        "proxy": "https://www.hsso.dev:8180",
+        "enable": false,
+        "proxy": "https://localhost:8180",
         "open": true,
         "xip": false
     },
