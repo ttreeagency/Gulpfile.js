@@ -136,5 +136,9 @@ gulp.task('default').description = util.colors.inverse(' Generates all ') + ' As
 gulp.task('default').flags = flags;
 
 
-gulp.task('pipeline', gulp.series('build', 'optimizeImages', 'compress'));
+if (config.tasks.compress) {
+	gulp.task('pipeline', gulp.series('build', 'optimizeImages', 'compress'));
+} else {
+	gulp.task('pipeline', gulp.series('build', 'optimizeImages'));
+}
 gulp.task('pipeline').description = 'Build task for pipeline';
