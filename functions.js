@@ -60,7 +60,7 @@ function getExtensions(extensions, prepend = '') {
 
 function getInfoFromComposer(path = '') {
   try {
-    let composer = require(`../${path}composer.json`);
+    let composer = require(`../../${path}composer.json`);
     let author = composer.author ? composer.author : config.info.author;
     if (composer.description && composer.homepage) {
       config.info = {
@@ -75,7 +75,7 @@ function getInfoFromComposer(path = '') {
 }
 function mergeRootConfig(filename) {
   try {
-    const configFromRoot = require(`../${filename}`);
+    const configFromRoot = require(`../../${filename}`);
     mergeDeep(config, configFromRoot);
     console.info(`Loaded config file ${util.colors.red(filename)} from root`);
   } catch (error) {
@@ -96,7 +96,7 @@ function mergeSiteConfig(path) {
   const siteFolder = getFolderSiteName(files);
 
   try {
-    const packageConfig = require(`../${path}/${siteFolder}/Configuration/Gulp.json`);
+    const packageConfig = require(`../../${path}/${siteFolder}/Configuration/Gulp.json`);
     mergeDeep(config, packageConfig);
     console.info(`Loaded config file ${util.colors.red('Gulp.json')} from the package ${util.colors.red(siteFolder)}`);
   } catch (error) {
