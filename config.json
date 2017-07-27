@@ -19,6 +19,12 @@
         "inlineAssets": false,
         "notifications": false
     },
+    "ngrok": {
+        "enable": false,
+        "config": {
+            "proto": "http"
+        }
+    },
     "browserSync": {
         "enable": false,
         "proxy": "https://localhost:8180",
