@@ -5,7 +5,7 @@ This package sync properties between dimensions automatically.
 Installation
 ------------
 
-    composer require ttree/gulpfilejs
+    composer require --dev ttree/gulpfilejs dev-master
 
 Acknowledgments
 ---------------
