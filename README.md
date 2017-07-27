@@ -1,6 +1,7 @@
 # Gulpfile.js tailored to Flow Framework and Neos CMS project
 
-This package sync properties between dimensions automatically.
+Stolen files originaly created by [jonnitto](https://github.com/jonnitto/gulpfile.js) and carefully 
+packaged for your Flow Framework and Neos CMS project.
 
 Installation
 ------------
