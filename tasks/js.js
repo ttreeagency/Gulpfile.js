@@ -11,11 +11,9 @@ const rollupSourcemaps = require('rollup-plugin-sourcemaps');
 const commonjs = require('rollup-plugin-commonjs');
 const amd = require('rollup-plugin-amd');
 const buble = require('rollup-plugin-buble');
-const babel = require('rollup-plugin-babel');
 const globals = require('rollup-plugin-node-globals');
 
 const uglify = require('rollup-plugin-uglify');
-
 
 let rollupConfig = config.tasks.js.rollup;
 let paths = {
@@ -48,11 +46,9 @@ if (rollupConfig.plugins.amd) {
 		rollupPlugins.push(amd(rollupConfig.plugins.amd));
 	}
 }
-
 rollupPlugins.push(rollupSourcemaps());
 rollupPlugins.push(globals());
 if (rollupConfig.buble) { rollupPlugins.push(buble()); }
-if (!rollupConfig.buble) { rollupPlugins.push(babel()); }
 
 if (mode.minimize) { rollupPlugins.push(uglify({mangle : true})); }
 
@@ -69,8 +65,7 @@ function js() {
 			}),
 			allowRealFiles: true,
 			plugins: rollupPlugins,
-			format: rollupConfig.format,
-			moduleName: rollupConfig.moduleName
+			format: rollupConfig.format
 		}))
 		.pipe(config.root.inlineAssets ? gulp.dest(path.join(config.root.base, config.root.inlineAssets)) : util.noop())
 		.pipe(config.banner ? header(config.banner, {

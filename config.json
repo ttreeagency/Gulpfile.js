@@ -22,7 +22,7 @@
     "browserSync": {
         "enable": false,
         "proxy": "https://localhost:8180",
-        "open": true,
+        "open": false,
         "xip": false
     },
     "banner": "/*!\n * <%= info.description %> - powered by <%= info.system %> & <%= info.author %>\n * @build <%= timestamp %>\n * @link <%= info.homepage %>\n */\n",
@@ -142,7 +142,7 @@
         "scssLint": false,
         "jsLint": true,
         "js": {
-            "src": "Fusion/**",
+            "src": "Components/**",
             "dest": "Scripts",
             "extensions": [
                 "js",
@@ -150,9 +150,7 @@
             ],
             "rollup": {
                 "enable": true,
-                "comment": "Available formats are amd, cjs, es6, iife or umd",
                 "format": "iife",
-                "moduleName": "f",
                 "buble": true,
                 "plugins": {
                     "nodeResolve": {
@@ -178,7 +176,10 @@
                         "exclude": "node_modules/process-es6/**",
                         "include": [
                             "node_modules/**"
-                        ]
+                        ],
+                        "namedExports": {
+                            "node_modules/barba.js/dist/barba.js": [ "Barba" ]
+                        }
                     },
                     "amd": false
                 }
