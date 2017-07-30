@@ -156,7 +156,7 @@
             ],
             "rollup": {
                 "enable": true,
-                "format": "es",
+                "format": "iife",
                 "buble": true,
                 "plugins": {
                     "nodeResolve": {
