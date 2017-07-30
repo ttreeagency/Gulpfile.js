@@ -148,7 +148,7 @@
         "scssLint": false,
         "jsLint": true,
         "js": {
-            "src": "Components/**",
+            "src": "Components",
             "dest": "Scripts",
             "extensions": [
                 "js",
@@ -156,7 +156,7 @@
             ],
             "rollup": {
                 "enable": true,
-                "format": "iife",
+                "format": "es",
                 "buble": true,
                 "plugins": {
                     "nodeResolve": {
