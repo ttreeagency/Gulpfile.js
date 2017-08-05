@@ -1,10 +1,6 @@
 {
     "name": "distribution",
     "version": "1.0.0",
-    "repository": {
-        "type": "git",
-        "url": "ssh://git@github.com:ttreeagency/Gulpfile.js.git"
-    },
     "scripts": {
         "gulp": "gulp --cwd ./ --gulpfile ./Build/Gulp",
         "start": "npm run gulp",
