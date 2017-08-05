@@ -107,25 +107,6 @@ task.watch = () => {
   if (browserSync) {
     browserSync.init(config.browserSync, function (err, bs) {
 			util.log('BrowserSync running');
-			if (config.ngrok.enable === true) {
-				const ngrok = require('ngrok');
-				const ngrokConfig = config.ngrok.config;
-				if (ngrokConfig.addr === undefined) {
-					ngrokConfig.addr = bs.options.get('port');
-				}
-				ngrok.connect(ngrokConfig, function (err, url) {
-					console.log('\n---------------------------------------');
-					if (url !== undefined) {
-						console.log(' Remote link: ' + util.colors.yellow(url));
-						console.log('    Local UI: http://localhost:4040');
-					} else {
-						console.log(util.colors.red('Please help browsersync ...'));
-						console.log(err);
-					}
-					console.log('---------------------------------------');
-					util.log('Ngrok proxy configured');
-				});
-			}
 		});
   }
 
