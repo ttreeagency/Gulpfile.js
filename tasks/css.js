@@ -5,6 +5,7 @@ if (!config.tasks.css) {
 }
 
 const sass         = require('gulp-sass');
+const sassGlob     = require('gulp-sass-glob');
 const postcss      = require('gulp-postcss');
 const beautify     = require('gulp-cssbeautify');
 const cssnano      = require('cssnano'); // https://github.com/ben-eb/cssnano
@@ -65,6 +66,7 @@ function css() {
 	return gulp.src(paths.src, {since: cache.lastMtime('css')})
 		.pipe(plumber(handleErrors))
 		.pipe(mode.maps ? sourcemaps.init({loadMaps: true}) : util.noop())
+		.pipe(sassGlob())
 		.pipe(sass(saasConfig))
 		.pipe(flatten())
 		.pipe(postcss(postScss))
