@@ -225,6 +225,8 @@
                 "svg"
             ]
         },
-        "compress": false
+        "compress": {
+            "enabled": false
+        }
     }
 }

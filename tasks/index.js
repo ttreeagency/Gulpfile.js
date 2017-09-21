@@ -73,7 +73,7 @@ if (config.tasks.svgSprite) {
   gulp.task('sprite', task.svgSprite);
   gulp.task('sprite').description = 'Create SVG Sprite';
 }
-if (config.tasks.compress) {
+if (config.tasks.compress.enabled) {
   gulp.task('compress', bach.parallel(task.globalBrotli, task.globalZopfli));
   gulp.task('compress').description = 'Compress all CSS/JS with Brotli and Zopfli';
 }
@@ -137,8 +137,7 @@ gulp.task('default', gulp.series('build', 'watch'));
 gulp.task('default').description = util.colors.inverse(' Generates all ') + ' Assets, Javascript and CSS files & ' + util.colors.inverse(' watch them ');
 gulp.task('default').flags = flags;
 
-
-if (config.tasks.compress) {
+if (config.tasks.compress.enabled) {
 	gulp.task('pipeline', gulp.series('build', 'optimizeImages', 'compress'));
 } else {
 	gulp.task('pipeline', gulp.series('build', 'optimizeImages'));
