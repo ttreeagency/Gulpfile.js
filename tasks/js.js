@@ -31,6 +31,15 @@ let rollupPlugins = [
 	includePaths(rollupConfig.plugins.includePaths),
 	nodeResolve(rollupConfig.plugins.nodeResolve)
 ];
+if (rollupConfig.plugins.alias) {
+	const alias = require('rollup-plugin-alias');
+	for (let key of Object.keys(rollupConfig.plugins.alias)) {
+		const value = rollupConfig.plugins.alias[key];
+		rollupConfig.plugins.alias[key] = path.resolve(...value);
+	}
+	rollupPlugins.push(alias(rollupConfig.plugins.alias));
+}
+
 if (rollupConfig.plugins.commonjs) {
 	if (typeof rollupConfig.plugins.commonjs == 'boolean') {
 		rollupPlugins.push(commonjs());
