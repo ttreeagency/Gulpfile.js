@@ -59,8 +59,31 @@ let paths = {
 	dest: path.join(config.root.base, config.root.dest, config.tasks.css.dest)
 };
 
+/**
+ * Will look for .scss|sass files inside the node_modules folder
+ */
+const aliases = {};
+function npmModule(url, file, done) {
+	// check if the path was already found and cached
+	if(aliases[url]) {
+		return done({ file:aliases[url] });
+	}
+
+	// look for modules installed through npm
+	try {
+		var newPath = path.relative('./css', require.resolve(url));
+		aliases[url] = newPath; // cache this request
+		return done({ file:newPath });
+	} catch(e) {
+		// if your module could not be found, just return the original url
+		aliases[url] = url;
+		return done({ file:url });
+	}
+}
+
 let saasConfig = config.tasks.css.sass;
 saasConfig.imagePath = (config.tasks.css.dest ? '../' : '') + saasConfig.imagePath;
+saasConfig.importer = npmModule;
 
 function css() {
 	return gulp.src(paths.src, {since: cache.lastMtime('css')})
