@@ -83,7 +83,9 @@ function npmModule(url, file, done) {
 
 let saasConfig = config.tasks.css.sass;
 saasConfig.imagePath = (config.tasks.css.dest ? '../' : '') + saasConfig.imagePath;
-saasConfig.importer = npmModule;
+if (config.tasks.css.sassNpmModuleImporter) {
+	saasConfig.importer = npmModule;
+}
 
 function css() {
 	return gulp.src(paths.src, {since: cache.lastMtime('css')})
