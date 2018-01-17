@@ -12,8 +12,10 @@ const commonjs = require('rollup-plugin-commonjs');
 const amd = require('rollup-plugin-amd');
 const buble = require('rollup-plugin-buble');
 const globals = require('rollup-plugin-node-globals');
+const babel = require('rollup-plugin-babel');
 
 const uglify = require('rollup-plugin-uglify');
+const { minify } = require('uglify-es');
 
 let rollupConfig = config.tasks.js.rollup;
 let paths = {
@@ -58,8 +60,11 @@ if (rollupConfig.plugins.amd) {
 rollupPlugins.push(rollupSourcemaps());
 rollupPlugins.push(globals());
 if (rollupConfig.buble) { rollupPlugins.push(buble()); }
+if (!rollupConfig.buble) { rollupPlugins.push(babel({
+	exclude: 'node_modules/**'
+})); }
 
-if (mode.minimize) { rollupPlugins.push(uglify({mangle : true})); }
+if (mode.minimize) { rollupPlugins.push(uglify({mangle : true}, minify)); }
 
 function js() {
 	return gulp.src(paths.src, {since: cache.lastMtime('js')})
@@ -67,14 +72,16 @@ function js() {
 		.pipe(mode.maps ? sourcemaps.init({loadMaps: true}) : util.noop())
 		.pipe(gulpRollup({
 			rollup: require('rollup'),
-			entry: new Promise((resolve, reject) => {
+			input: new Promise((resolve, reject) => {
 				glob(paths.src, (error, files) => {
 					resolve(files);
 				});
 			}),
+			output: {
+				format: rollupConfig.format
+			},
 			allowRealFiles: true,
 			plugins: rollupPlugins,
-			format: rollupConfig.format
 		}))
 		.pipe(config.root.inlineAssets ? gulp.dest(path.join(config.root.base, config.root.inlineAssets)) : util.noop())
 		.pipe(config.banner ? header(config.banner, {
