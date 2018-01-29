@@ -9,7 +9,6 @@ const nodeResolve = require('rollup-plugin-node-resolve');
 const includePaths = require('rollup-plugin-includepaths');
 const rollupSourcemaps = require('rollup-plugin-sourcemaps');
 const commonjs = require('rollup-plugin-commonjs');
-const amd = require('rollup-plugin-amd');
 const buble = require('rollup-plugin-buble');
 const globals = require('rollup-plugin-node-globals');
 const babel = require('rollup-plugin-babel');
@@ -51,6 +50,7 @@ if (rollupConfig.plugins.commonjs) {
 }
 
 if (rollupConfig.plugins.amd) {
+	const amd = require('rollup-plugin-amd');
 	if (typeof rollupConfig.plugins.amd == 'boolean') {
 		rollupPlugins.push(amd());
 	} else {
