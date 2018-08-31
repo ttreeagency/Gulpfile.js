@@ -8,7 +8,6 @@ const sass         = require('gulp-sass');
 const sassGlob     = require('gulp-sass-glob');
 const postcss      = require('gulp-postcss');
 const beautify     = require('gulp-cssbeautify');
-const cssnano      = require('cssnano'); // https://github.com/ben-eb/cssnano
 const autoprefixer = require('autoprefixer');
 
 let pc         = config.tasks.css.postcss;
@@ -95,7 +94,7 @@ function css() {
 		.pipe(sass(saasConfig))
 		.pipe(flatten())
 		.pipe(postcss(postScss))
-		.pipe(mode.minimize ? postcss([cssnano(pc.cssnano)]) : postcss([autoprefixer(pc.cssnano.autoprefixer)]))
+		.pipe(postcss([autoprefixer(pc.cssnano.autoprefixer)]))
 		.pipe(mode.beautify ? beautify(config.tasks.css.cssbeautifyOptions) : util.noop())
 		.pipe(config.root.inlineAssets ? gulp.dest(path.join(config.root.base, config.root.inlineAssets)) : util.noop())
 		.pipe(config.banner ? header(config.banner, {
