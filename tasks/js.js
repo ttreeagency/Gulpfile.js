@@ -13,7 +13,7 @@ const buble = require('rollup-plugin-buble');
 const globals = require('rollup-plugin-node-globals');
 const babel = require('rollup-plugin-babel');
 
-const uglify = require('rollup-plugin-uglify');
+const { uglify } = require('rollup-plugin-uglify');
 const { minify } = require('uglify-es');
 
 let rollupConfig = config.tasks.js.rollup;
@@ -64,6 +64,7 @@ if (!rollupConfig.buble) { rollupPlugins.push(babel({
 	exclude: 'node_modules/**'
 })); }
 
+console.log(uglify);
 if (mode.minimize) { rollupPlugins.push(uglify({mangle : true}, minify)); }
 
 function js() {
